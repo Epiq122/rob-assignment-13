@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Users</title>
+</head>
+<body>
+	<h1>Users</h1>
+
+	<div th:if="${#lists.size(users) == 1}">
+		<form action="" method="post">
+			<div>
+				Username: <input th:field="${user.username}" type="text"/>
+			</div>
+			<div>
+				Password: <input th:field="${user.password}" type="password"/>
+			</div>
+			<div>
+				Full Name: <input th:field="${user.name}" type="text"/>
+			</div>
+			<div>
+				<input type="submit" value="Update User Account"/>
+			</div>
+		</form>
+		<form method="post" th:action="@{/users/{userId}/delete(userId=${user.userId})}">
+			<input type="submit" value="Delete User Account"/>
+		</form>
+	</div>
+
+	<div th:each="user : ${users}" th:unless="${#lists.size(users) == 1}">
+		<span th:text="${user.userId}"></span><br/>
+		<span th:text="${user.username}"></span><br/>
+		<span th:text="${user.name}"></span><br/>
+		<span th:text="${user.password}"></span>
+		<div th:each="account : ${user.accounts}">
+			<span th:text="${account.accountName}"></span>
+		</div>
+		<hr/>
+	</div>
+</body>
+</html>
