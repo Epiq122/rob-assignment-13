@@ -20,22 +20,22 @@
 			<br>
 			<hr>
 			<label for="addressLine1">Address Line 1</label>
-			<input id="addressLine1" name="addressLine1" type="text">
+			<input id="addressLine1" name="addressLine1" th:field="${user.address.addressLine1}" type="text">
 			<br>
 			<label for="addressLine2">Address Line 2</label>
-			<input id="addressLine2" name="addressLine2" type="text">
+			<input id="addressLine2" name="addressLine2" th:field="${user.address.addressLine2}" type="text">
 			<br>
 			<label for="city">City</label>
-			<input id="city" name="city" type="text">
+			<input id="city" name="city" th:field="${user.address.city}" type="text">
 			<br>
 			<label for="region">Region</label>
-			<input id="region" name="region" type="text">
+			<input id="region" name="region" th:field="${user.address.region}" type="text">
 			<br>
 			<label for="country">Country</label>
-			<input id="country" name="country" type="text">
+			<input id="country" name="country" th:field="${user.address.country}" type="text">
 			<br>
 			<label for="zipCode">Zip Code</label>
-			<input id="zipCode" name="zipCode" type="text">
+			<input id="zipCode" name="zipCode" th:field="${user.address.zipCode}" type="text">
 			<br>
 			<br>
 			<input type="submit" value="Update User Account">
@@ -46,12 +46,13 @@
 			<input type="submit" value="Delete User Account">
 		</form>
 		<h2>Accounts</h2>
-		<form action="">
-			<input type="submit" value="Create New Bank Account">
-			<br>
-			<a href="/users">Back</a>
-
-		</form>
+		<div th:each="account : ${user.accounts}">
+			<a href=""><span th:text="${account.accountName}"></span></a>
+		</div>
+		<br>
+		<input type="submit" value="Create New Bank Account">
+		<br>
+		<a href="/users">Back</a>
 	</div>
 
 

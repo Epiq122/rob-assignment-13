@@ -64,4 +64,20 @@ public class UserController {
         userService.delete(userId);
         return "redirect:/users";
     }
+
+
+    @GetMapping("/users/{userId}/accounts")
+    public String getAccounts(ModelMap model, @PathVariable Long userId) {
+        User user = userService.findById(userId);
+        model.put("user", user);
+        return "accounts";
+    }
+
+    // create a get mapping for accounts and account id
+    @GetMapping("/users/{userId}/accounts/{accountId}")
+    public String getAccounts(ModelMap model, @PathVariable Long userId, @PathVariable Long accountId) {
+        User user = userService.findById(userId);
+        model.put("user", user);
+        return "accounts";
+    }
 }
