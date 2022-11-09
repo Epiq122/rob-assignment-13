@@ -9,33 +9,64 @@
 
 	<div th:if="${#lists.size(users) == 1}">
 		<form action="" method="post">
-			<div>
-				Username: <input th:field="${user.username}" type="text"/>
-			</div>
-			<div>
-				Password: <input th:field="${user.password}" type="password"/>
-			</div>
-			<div>
-				Full Name: <input th:field="${user.name}" type="text"/>
-			</div>
-			<div>
-				<input type="submit" value="Update User Account"/>
-			</div>
+			<label for="username">Username</label>
+			<input id="username" name="username" th:field="${user.username}" type="text">
+			<br>
+			<label for="password">Password</label>
+			<input id="password" name="password" th:field="${user.password}" type="password">
+			<br>
+			<label for="name">Name</label>
+			<input id="name" name="name" th:field="${user.name}" type="text">
+			<br>
+			<hr>
+			<label for="addressLine1">Address Line 1</label>
+			<input id="addressLine1" name="addressLine1" type="text">
+			<br>
+			<label for="addressLine2">Address Line 2</label>
+			<input id="addressLine2" name="addressLine2" type="text">
+			<br>
+			<label for="city">City</label>
+			<input id="city" name="city" type="text">
+			<br>
+			<label for="region">Region</label>
+			<input id="region" name="region" type="text">
+			<br>
+			<label for="country">Country</label>
+			<input id="country" name="country" type="text">
+			<br>
+			<label for="zipCode">Zip Code</label>
+			<input id="zipCode" name="zipCode" type="text">
+			<br>
+			<br>
+			<input type="submit" value="Update User Account">
+
 		</form>
+		<!-- separate form for deleting an account because we don't have access to JS YET! -->
 		<form method="post" th:action="@{/users/{userId}/delete(userId=${user.userId})}">
-			<input type="submit" value="Delete User Account"/>
+			<input type="submit" value="Delete User Account">
+		</form>
+		<h2>Accounts</h2>
+		<form action="">
+			<input type="submit" value="Create New Bank Account">
+			<br>
+			<a href="/users">Back</a>
+
 		</form>
 	</div>
 
+
 	<div th:each="user : ${users}" th:unless="${#lists.size(users) == 1}">
-		<span th:text="${user.userId}"></span><br/>
-		<span th:text="${user.username}"></span><br/>
-		<span th:text="${user.name}"></span><br/>
-		<span th:text="${user.password}"></span>
+
+
+		<span><a th:href="@{/users/{userId}(userId=${user.userId})}" th:text="${user.userId}"></a></span>
+		<br>
+		<span th:text="${user.username}"></span><br>
+		<span th:text="${user.name}"></span><br>
+		<span th:text="${user.password}"></span><br>
 		<div th:each="account : ${user.accounts}">
 			<span th:text="${account.accountName}"></span>
 		</div>
-		<hr/>
+		<hr>
 	</div>
 </body>
 </html>
