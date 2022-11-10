@@ -3,6 +3,7 @@ package com.coderscampus.assignment13.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "accounts")
@@ -47,5 +48,18 @@ public class Account {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return accountId.equals(account.accountId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountId);
     }
 }
