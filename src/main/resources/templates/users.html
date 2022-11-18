@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>Users</title>
@@ -47,16 +47,24 @@
 		</form>
 		<h2>Accounts</h2>
 		<div th:each="account : ${user.accounts}">
-			<a href=""><span th:text="${account.accountName}"></span></a>
+			<a
+					th:href="@{/users/{userId}/accounts/{accountId} (userId=${user.userId}, accountId=${account.accountId})}">
+				<p th:text="${account.accountName}"></p></a>
 		</div>
 		<br>
-		[
+
 		<div>
 
 		</div>
-		<input type="submit" value="Create New Bank Account">
+		<div>
+			<form method="POST" th:action="@{/users/{userId}/accounts (userId=${user.userId})}">
+				<input type="submit" value="Create New Bank Account"></form>
+			<br>
+			<a href="/users">Back</a>
+
+		</div>
+
 		<br>
-		<a href="/users">Back</a>
 	</div>
 
 

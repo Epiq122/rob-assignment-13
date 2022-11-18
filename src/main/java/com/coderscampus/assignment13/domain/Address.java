@@ -4,16 +4,25 @@ import javax.persistence.*;
 
 @Entity
 public class Address {
+    @Id
     private Long userId;
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
     private User user;
+    @Column(length = 200)
     private String addressLine1;
+    @Column(length = 200)
     private String addressLine2;
+    @Column(length = 100)
     private String city;
+    @Column(length = 100)
     private String region;
+    @Column(length = 100)
     private String country;
+    @Column(length = 15)
     private String zipCode;
 
-    @Id
     public Long getUserId() {
         return userId;
     }
@@ -22,9 +31,6 @@ public class Address {
         this.userId = userId;
     }
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }
@@ -33,7 +39,6 @@ public class Address {
         this.user = user;
     }
 
-    @Column(length = 200)
     public String getAddressLine1() {
         return addressLine1;
     }
@@ -42,7 +47,6 @@ public class Address {
         this.addressLine1 = addressLine1;
     }
 
-    @Column(length = 200)
     public String getAddressLine2() {
         return addressLine2;
     }
@@ -51,7 +55,7 @@ public class Address {
         this.addressLine2 = addressLine2;
     }
 
-    @Column(length = 100)
+
     public String getCity() {
         return city;
     }
@@ -60,7 +64,7 @@ public class Address {
         this.city = city;
     }
 
-    @Column(length = 100)
+
     public String getRegion() {
         return region;
     }
@@ -69,7 +73,7 @@ public class Address {
         this.region = region;
     }
 
-    @Column(length = 100)
+
     public String getCountry() {
         return country;
     }
@@ -78,7 +82,7 @@ public class Address {
         this.country = country;
     }
 
-    @Column(length = 15)
+
     public String getZipCode() {
         return zipCode;
     }

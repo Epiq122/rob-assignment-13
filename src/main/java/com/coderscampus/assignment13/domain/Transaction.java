@@ -6,14 +6,17 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "transactions")
 public class Transaction {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
     private LocalDateTime transactionDate;
     private Double amount;
+    @Column(length = 1)
     private String type;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
     private Account account;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getTransactionId() {
         return transactionId;
     }
@@ -38,7 +41,6 @@ public class Transaction {
         this.amount = amount;
     }
 
-    @Column(length = 1)
     public String getType() {
         return type;
     }
@@ -47,8 +49,6 @@ public class Transaction {
         this.type = type;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
     public Account getAccount() {
         return account;
     }

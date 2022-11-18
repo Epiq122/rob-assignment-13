@@ -65,19 +65,5 @@ public class UserController {
         return "redirect:/users";
     }
 
-    // ACCOUNTS MAPPING
-    @GetMapping("/users/{userId}/accounts")
-    public String getAccounts(ModelMap model, @PathVariable Long userId) {
-        User user = userService.findById(userId);
-        model.put("user", user);
-        return "accounts";
-    }
 
-
-    @GetMapping("/users/{userId}/accounts/{accountId}")
-    public String getAccounts(ModelMap model, @PathVariable Long userId, @PathVariable Long accountId) {
-        User user = userService.findById(userId);
-        model.put("user", user);
-        return "accounts";
-    }
 }
