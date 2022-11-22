@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Set;
 
 @Controller
@@ -48,7 +48,7 @@ public class UserController {
     @GetMapping("/users/{userId}")
     public String getOneUser(ModelMap model, @PathVariable Long userId) {
         User user = userService.findById(userId);
-        model.put("users", Arrays.asList(user));
+        model.put("users", Collections.singletonList(user));
         model.put("user", user);
         return "users";
     }
