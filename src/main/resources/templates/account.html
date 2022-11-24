@@ -8,15 +8,16 @@
 	<h2 th:text="${account.accountName}"></h2>
 	<form action="" method="POST">
 		<div>
-			Account Name: <span th:text="${account.accountName}"></span>
-
+			Account Name: <label>
+			<input th:field="${account.accountName}" type="text">
+		</label>
 		</div>
 		<input type="submit" value="Update Account">
 
 	</form>
 	<!-- 	back to user id-->
 	<div>
-		<a th:href="@{users/{userId} (userId = ${user.userId})}">Go Back</a>
+		<a th:href="@{/users/{userId}(userId=${user.userId})}">Go Back</a>
 	</div>
 </body>
 </html>

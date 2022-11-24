@@ -38,30 +38,28 @@
 			<input id="zipCode" name="zipCode" th:field="${user.address.zipCode}" type="text">
 			<br>
 			<br>
-			<input type="submit" value="Update User Account">
+			<input th:field="${user.userId}" type="hidden"/>
+			<div>
+				<input type="submit" value="Update User Account"/>
+			</div>
 
 		</form>
 		<!-- separate form for deleting an account because we don't have access to JS YET! -->
 		<form method="post" th:action="@{/users/{userId}/delete(userId=${user.userId})}">
 			<input type="submit" value="Delete User Account">
 		</form>
-		<h2>Accounts</h2>
-		<div th:each="account : ${user.accounts}">
-			<a
-					th:href="@{/users/{userId}/accounts/{accountId} (userId=${user.userId}, accountId=${account.accountId})}">
-				<p
-						th:text="${account.accountName}"></p></a>
-		</div>
-		
-		<form method="POST" th:action="@{/users/{userId}/accounts (userId=${user.userId})}">
+
+		<form method="POST" th:action="@{/users/{userId}/accounts(userId=${user.userId})}">
+			<h2>Accounts</h2>
+			<div th:each="account : ${user.accounts}">
+				<a
+						th:href="@{/users/{userId}/accounts/{accountId} (userId=${user.userId}, accountId=${account.accountId})}">
+					<p
+							th:text="${account.accountName}"></p></a>
+			</div>
+
 			<input type="submit" value="Create New Bank Account"></form>
-
-
 		<br>
-
-		<div>
-
-		</div>
 		<div>
 			<br>
 			<a href="/users">Back</a>
@@ -73,15 +71,14 @@
 
 
 	<div th:each="user : ${users}" th:unless="${#lists.size(users) == 1}">
-
-
 		<span><a th:href="@{/users/{userId}(userId=${user.userId})}" th:text="${user.userId}"></a></span>
 		<br>
 		<span th:text="${user.username}"></span><br>
 		<span th:text="${user.name}"></span><br>
 		<span th:text="${user.password}"></span><br>
 		<div th:each="account : ${user.accounts}">
-			<span th:text="${account.accountName}"></span>
+			<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId},accountId=${account.accountId})}"
+			   th:text="${account.accountName}"></a>
 		</div>
 		<hr>
 	</div>

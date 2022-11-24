@@ -58,7 +58,7 @@ public class User {
         this.createdDate = createdDate;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(name = "user_account",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "account_id"))
@@ -70,7 +70,7 @@ public class User {
         this.accounts = accounts;
     }
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
     public Address getAddress() {
         return address;
     }
@@ -103,10 +103,7 @@ public class User {
             return false;
         User other = (User) obj;
         if (userId == null) {
-            if (other.userId != null)
-                return false;
-        } else if (!userId.equals(other.userId))
-            return false;
-        return true;
+            return other.userId == null;
+        } else return userId.equals(other.userId);
     }
 }
