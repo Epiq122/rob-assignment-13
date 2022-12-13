@@ -5,6 +5,8 @@ import com.coderscampus.assignment13.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AccountService {
 
@@ -13,15 +15,13 @@ public class AccountService {
     private AccountRepository accountRepo;
 
 
-    public Account saveAccount(Account account) {
+    public Account save(Account account) {
         return accountRepo.save(account);
     }
 
-    public void deleteAccount(Long accountId) {
-        accountRepo.deleteById(accountId);
-    }
 
     public Account findById(Long accountId) {
-        return accountRepo.findById(accountId).orElse(new Account());
+        Optional<Account> accountOptional = accountRepo.findById(accountId);
+        return accountOptional.orElse(new Account());
     }
 }

@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name = "accounts")
 
 public class Account {
-   
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;
@@ -17,7 +17,7 @@ public class Account {
     private String accountName;
     @OneToMany(mappedBy = "account")
     private List<Transaction> transactions = new ArrayList<>();
-    @ManyToMany(mappedBy = "accounts")
+    @ManyToMany(mappedBy = "accounts", cascade = CascadeType.PERSIST)
     private List<User> users = new ArrayList<>();
 
 

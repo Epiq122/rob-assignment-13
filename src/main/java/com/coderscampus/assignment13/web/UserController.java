@@ -1,5 +1,6 @@
 package com.coderscampus.assignment13.web;
 
+
 import com.coderscampus.assignment13.domain.User;
 import com.coderscampus.assignment13.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Collections;
 import java.util.Set;
 
+//}
 @Controller
 public class UserController {
 
@@ -29,7 +31,7 @@ public class UserController {
     @PostMapping("/register")
     public String postCreateUser(User user) {
         System.out.println(user);
-        userService.saveUser(user);
+        userService.save(user);
         return "redirect:/register";
     }
 
@@ -54,8 +56,8 @@ public class UserController {
     }
 
     @PostMapping("/users/{userId}")
-    public String postOneUser(User user) {
-        userService.saveUser(user);
+    public String postSingleUser(User user) {
+        userService.save(user);
         return "redirect:/users/" + user.getUserId();
     }
 
@@ -64,6 +66,4 @@ public class UserController {
         userService.delete(userId);
         return "redirect:/users";
     }
-
-
 }

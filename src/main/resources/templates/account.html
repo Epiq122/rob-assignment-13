@@ -7,15 +7,16 @@
 <body>
 	<h2 th:text="${account.accountName}"></h2>
 	<form action="" method="POST">
+		<input th:field="${account.accountId}" type="hidden"/>
 		<div>
 			Account Name: <label>
 			<input th:field="${account.accountName}" type="text">
 		</label>
 		</div>
-		<input type="submit" value="Update Account">
+		<input type="submit" value="Save Account">
 
 	</form>
-	<!-- 	back to user id-->
+
 	<div>
 		<a th:href="@{/users/{userId}(userId=${user.userId})}">Go Back</a>
 	</div>

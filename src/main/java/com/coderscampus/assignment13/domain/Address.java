@@ -1,28 +1,20 @@
 package com.coderscampus.assignment13.domain;
 
+
 import javax.persistence.*;
 
 @Entity
 public class Address {
-    @Id
     private Long userId;
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
     private User user;
-    @Column(length = 200)
     private String addressLine1;
-    @Column(length = 200)
     private String addressLine2;
-    @Column(length = 100)
     private String city;
-    @Column(length = 100)
     private String region;
-    @Column(length = 100)
     private String country;
-    @Column(length = 15)
     private String zipCode;
 
+    @Id
     public Long getUserId() {
         return userId;
     }
@@ -31,6 +23,9 @@ public class Address {
         this.userId = userId;
     }
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @MapsId
+    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }
@@ -39,6 +34,7 @@ public class Address {
         this.user = user;
     }
 
+    @Column(length = 200)
     public String getAddressLine1() {
         return addressLine1;
     }
@@ -47,6 +43,7 @@ public class Address {
         this.addressLine1 = addressLine1;
     }
 
+    @Column(length = 200)
     public String getAddressLine2() {
         return addressLine2;
     }
@@ -55,7 +52,7 @@ public class Address {
         this.addressLine2 = addressLine2;
     }
 
-
+    @Column(length = 100)
     public String getCity() {
         return city;
     }
@@ -64,7 +61,7 @@ public class Address {
         this.city = city;
     }
 
-
+    @Column(length = 100)
     public String getRegion() {
         return region;
     }
@@ -73,7 +70,7 @@ public class Address {
         this.region = region;
     }
 
-
+    @Column(length = 100)
     public String getCountry() {
         return country;
     }
@@ -82,12 +79,34 @@ public class Address {
         this.country = country;
     }
 
-
+    @Column(length = 15)
     public String getZipCode() {
         return zipCode;
     }
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Address other = (Address) obj;
+        if (userId == null) {
+            return other.userId == null;
+        } else return userId.equals(other.userId);
     }
 }
