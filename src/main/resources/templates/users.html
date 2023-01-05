@@ -37,6 +37,7 @@
 			<div>
 				Zip Code: <input th:field="${user.address.zipCode}" type="text"/>
 			</div>
+
 			<input th:field="${user.accounts}" type="hidden"/>
 			<div>
 				<input type="submit" value="Update User Account"/>
@@ -44,6 +45,7 @@
 		</form>
 		<form method="post" th:action="@{/users/{userId}/delete(userId=${user.userId})}">
 			<input type="submit" value="Delete User Account"/>
+
 		</form>
 		<hr/>
 		<form method="post" th:action="@{/users/{userId}/accounts(userId=${user.userId})}">
