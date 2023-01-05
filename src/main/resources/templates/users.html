@@ -37,8 +37,7 @@
 			<div>
 				Zip Code: <input th:field="${user.address.zipCode}" type="text"/>
 			</div>
-			<input th:field="${user.address.userId}" type="hidden"/>
-			<input th:field="${user.address.user}" type="hidden"/>
+			<input th:field="${user.accounts}" type="hidden"/>
 			<div>
 				<input type="submit" value="Update User Account"/>
 			</div>
